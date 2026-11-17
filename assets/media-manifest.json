@@ -1,0 +1,206 @@
+{
+  "version": 2,
+  "mediaNote": "Source MP4s retain all 96 frames at 1920 x 1080 and 12 fps. Preview, playback, seeking and looping begin at source frame 1 (the first P frame); 95 frames are shown. BPP still describes the complete 96-frame codec evaluation, including its initial I frame, never MP4 sizes. S2VC includes an estimated I-frame component, disclosed in its rate notes.",
+  "sequences": [
+    {
+      "id": "hevc-b",
+      "label": "HEVC Class B",
+      "width": 1920,
+      "height": 1080,
+      "fps": 12,
+      "playbackFps": 12,
+      "frameCount": 96,
+      "duration": 8,
+      "methods": [
+        {
+          "id": "gt",
+          "label": "GT",
+          "video": "assets/videos/hevc-b-gt.mp4",
+          "poster": "assets/posters/hevc-b-gt-p1.jpg"
+        },
+        {
+          "id": "yoda",
+          "label": "YODA",
+          "video": "assets/videos/hevc-b-yoda.mp4",
+          "poster": "assets/posters/hevc-b-yoda-p1.jpg",
+          "bpp": 0.014569,
+          "bppLabel": "0.014569 bpp"
+        },
+        {
+          "id": "s2vc",
+          "label": "S²VC",
+          "video": "assets/videos/hevc-b-s2vc.mp4",
+          "poster": "assets/posters/hevc-b-s2vc-p1.jpg",
+          "bpp": 0.011228223991706783,
+          "bppLabel": "≈0.011228 bpp",
+          "rateNote": "Rate includes estimated I-frame y bits, fixed I-frame FSQ z bits, and actual P-frame payload bits; it is not the display MP4 bitrate.",
+          "rateMode": "estimated_I_y_plus_fixed_I_z_plus_actual_P",
+          "nativeRate": "3.7"
+        },
+        {
+          "id": "gvc-rt",
+          "label": "GVC-RT",
+          "video": "assets/videos/hevc-b-gvc-rt.mp4",
+          "poster": "assets/posters/hevc-b-gvc-rt-p1.jpg",
+          "bpp": 0.010573,
+          "bppLabel": "0.010573 bpp"
+        }
+      ],
+      "sgvc": {
+        "id": "sgvc",
+        "label": "SGVC",
+        "video": "assets/videos/hevc-b-sgvc.mp4",
+        "poster": "assets/posters/hevc-b-sgvc-p1.jpg",
+        "bpp": 0.009637,
+        "bppLabel": "0.009637 bpp"
+      },
+      "firstDisplayFrame": 1
+    },
+    {
+      "id": "uvg",
+      "label": "UVG",
+      "width": 1920,
+      "height": 1080,
+      "fps": 12,
+      "playbackFps": 12,
+      "frameCount": 96,
+      "duration": 8,
+      "methods": [
+        {
+          "id": "gt",
+          "label": "GT",
+          "video": "assets/videos/uvg-gt.mp4",
+          "poster": "assets/posters/uvg-gt-p1.jpg"
+        },
+        {
+          "id": "yoda",
+          "label": "YODA",
+          "video": "assets/videos/uvg-yoda.mp4",
+          "poster": "assets/posters/uvg-yoda-p1.jpg",
+          "bpp": 0.01513,
+          "bppLabel": "0.015130 bpp"
+        },
+        {
+          "id": "s2vc",
+          "label": "S²VC",
+          "video": "assets/videos/uvg-s2vc.mp4",
+          "poster": "assets/posters/uvg-s2vc-p1.jpg",
+          "bpp": 0.012327244792079913,
+          "bppLabel": "≈0.012327 bpp",
+          "rateNote": "Rate includes estimated I-frame y bits, fixed I-frame FSQ z bits, and actual P-frame payload bits; it is not the display MP4 bitrate.",
+          "rateMode": "estimated_I_y_plus_fixed_I_z_plus_actual_P",
+          "nativeRate": "3.7"
+        },
+        {
+          "id": "gvc-rt",
+          "label": "GVC-RT",
+          "video": "assets/videos/uvg-gvc-rt.mp4",
+          "poster": "assets/posters/uvg-gvc-rt-p1.jpg",
+          "bpp": 0.010869,
+          "bppLabel": "0.010869 bpp"
+        }
+      ],
+      "sgvc": {
+        "id": "sgvc",
+        "label": "SGVC",
+        "video": "assets/videos/uvg-sgvc.mp4",
+        "poster": "assets/posters/uvg-sgvc-p1.jpg",
+        "bpp": 0.011111,
+        "bppLabel": "0.011111 bpp"
+      },
+      "firstDisplayFrame": 1
+    },
+    {
+      "id": "mcl-jcv",
+      "label": "MCL-JCV",
+      "width": 1920,
+      "height": 1080,
+      "fps": 12,
+      "playbackFps": 12,
+      "frameCount": 96,
+      "duration": 8,
+      "methods": [
+        {
+          "id": "gt",
+          "label": "GT",
+          "video": "assets/videos/mcl-jcv-gt.mp4",
+          "poster": "assets/posters/mcl-jcv-gt-p1.jpg"
+        },
+        {
+          "id": "yoda",
+          "label": "YODA",
+          "video": "assets/videos/mcl-jcv-yoda.mp4",
+          "poster": "assets/posters/mcl-jcv-yoda-p1.jpg",
+          "bpp": 0.016426,
+          "bppLabel": "0.016426 bpp"
+        },
+        {
+          "id": "s2vc",
+          "label": "S²VC",
+          "video": "assets/videos/mcl-jcv-s2vc.mp4",
+          "poster": "assets/posters/mcl-jcv-s2vc-p1.jpg",
+          "bpp": 0.016036887618601937,
+          "bppLabel": "≈0.016037 bpp",
+          "rateNote": "Rate includes estimated I-frame y bits, fixed I-frame FSQ z bits, and actual P-frame payload bits; it is not the display MP4 bitrate.",
+          "rateMode": "estimated_I_y_plus_fixed_I_z_plus_actual_P",
+          "nativeRate": "2.6"
+        },
+        {
+          "id": "gvc-rt",
+          "label": "GVC-RT",
+          "video": "assets/videos/mcl-jcv-gvc-rt.mp4",
+          "poster": "assets/posters/mcl-jcv-gvc-rt-p1.jpg",
+          "bpp": 0.011295,
+          "bppLabel": "0.011295 bpp"
+        }
+      ],
+      "sgvc": {
+        "id": "sgvc",
+        "label": "SGVC",
+        "video": "assets/videos/mcl-jcv-sgvc.mp4",
+        "poster": "assets/posters/mcl-jcv-sgvc-p1.jpg",
+        "bpp": 0.014475,
+        "bppLabel": "0.014475 bpp"
+      },
+      "firstDisplayFrame": 1
+    }
+  ],
+  "figures": [
+    {
+      "id": "motivation",
+      "label": "From latent reconstruction to streaming pixel reconstruction",
+      "category": "motivation",
+      "layout": "full",
+      "src": "assets/figures/motivation.png",
+      "pdf": "assets/figures/motivation.pdf",
+      "width": 2800,
+      "height": 1690,
+      "alt": "Three diffusion-based video compression paradigms: frame-wise image LDM, clip-wise latent video DiT, and SGVC with causal K/V propagation and direct pixel output.",
+      "caption": "(a) Frame-wise image diffusion with recurrent conditioning. (b) Clip-wise latent video DiT with multi-frame buffering and VAE decoding. (c) SGVC adapts the video prior for causal frame-by-frame pixel reconstruction."
+    },
+    {
+      "id": "framework",
+      "label": "Framework overview",
+      "category": "method",
+      "layout": "full",
+      "src": "assets/figures/framework.png",
+      "pdf": "assets/figures/framework.pdf",
+      "width": 2800,
+      "height": 1301,
+      "caption": "A contextual codec supplies decoded features for one-step DiT refinement. Embedding Alignment is applied during training; In-Context Propagation carries layer-wise K/V states across frames. The reconstruction path maps refined features directly to pixels.",
+      "alt": "SGVC framework: contextual codec, feature adapter, video DiT with cached temporal context, and a pixel reconstruction path; Embedding Alignment is used during training.",
+      "showCaption": false
+    },
+    {
+      "id": "qualitative-comparison",
+      "label": "Ground truth and reconstructions from generative video codecs. BPP / DISTS / PSNR are reported in the figure.",
+      "category": "qualitative",
+      "layout": "full",
+      "src": "assets/figures/qualitative-comparison.png",
+      "pdf": "assets/figures/qualitative-comparison.pdf",
+      "width": 3600,
+      "height": 1381,
+      "alt": "Paper qualitative comparison across three scenes: full ground truth, ground-truth crops, GLC-Video, S²VC, GVC-1D, GVC-RT, YODA, and SGVC, with BPP, DISTS, and PSNR for each reconstruction."
+    }
+  ]
+}

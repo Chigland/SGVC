@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SGVC: Streaming Generative Video Compression with Embedding Alignment and In-Context Propagation. Explore synchronized reconstruction comparisons, the method, and experimental results.">
+  <meta name="theme-color" content="#355c87">
+  <meta property="og:title" content="SGVC — Streaming Generative Video Compression">
+  <meta property="og:description" content="Embedding Alignment and In-Context Propagation for causal pixel-space video refinement.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chigland.github.io/SGVC/">
+  <meta property="og:image" content="https://chigland.github.io/SGVC/assets/figures/framework.png">
+  <meta property="og:image:alt" content="SGVC framework overview">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>SGVC — Streaming Generative Video Compression</title>
+  <link rel="canonical" href="https://chigland.github.io/SGVC/">
+  <link rel="stylesheet" href="style.css?v=gradient-controls">
+  <script src="app.js?v=paired-frames" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#comparisons">Skip to video comparisons</a>
+  <header class="hero page-width">
+    <h1><span class="title-main">Streaming Generative Video Compression</span> <span class="title-sub">with Embedding Alignment and In-Context Propagation</span></h1>
+    <div class="authors" aria-label="Authors">
+      <a href="mailto:zhitao.wang.hit@outlook.com">Zhitao Wang<sup>1</sup></a>
+      <a href="mailto:manhengyu@hotmail.com">Hengyu Man<sup>1</sup></a>
+      <a href="mailto:24b903011@stu.hit.edu.cn">Han Liu<sup>1</sup></a>
+      <a href="mailto:liwr618@163.com">Wenrui Li<sup>1</sup></a>
+      <a href="mailto:dbzhao@hit.edu.cn">Debin Zhao<sup>1</sup></a>
+      <a href="mailto:fxp@hit.edu.cn">Xiaopeng Fan<sup>1,2,3</sup></a>
+    </div>
+    <div class="affiliations">
+      <span><sup>1</sup> Harbin Institute of Technology</span>
+      <span><sup>2</sup> Harbin Institute of Technology Suzhou Research Institute</span>
+      <span><sup>3</sup> Peng Cheng Laboratory</span>
+    </div>
+    <div class="resource-links" aria-label="Project resources">
+      <button class="resource-button" type="button" disabled aria-label="GitHub code, coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.06c-3.1.68-3.75-1.31-3.75-1.31-.51-1.3-1.24-1.64-1.24-1.64-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.49 0-1.21.44-2.2 1.14-2.97-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.77 1.14 1.76 1.14 2.97 0 4.27-2.6 5.21-5.08 5.49.4.35.75 1.03.75 2.07v3.03c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+        GitHub <span class="soon">Soon</span>
+      </button>
+      <button class="resource-button" type="button" disabled aria-label="ModelScope models, coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 1 10 5.5v11L12 23 2 17.5v-11L12 1Zm0 2.3L5.1 7.1 12 11l6.9-3.9L12 3.3ZM4 8.8v7.5l7 3.9v-7.5L4 8.8Zm9 11.4 7-3.9V8.8l-7 3.9v7.5Z"/></svg>
+        ModelScope <span class="soon">Soon</span>
+      </button>
+      <button class="resource-button" type="button" disabled aria-label="arXiv paper, link coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v15H5V2h1Zm1 2v16h10V8h-5V4H7Zm7 .8V6h1.2L14 4.8ZM9 11h6v2H9v-2Zm0 4h6v2H9v-2Z"/></svg>
+        arXiv <span class="soon">Soon</span>
+      </button>
+    </div>
+    <nav class="section-nav" aria-label="On this page">
+      <a href="#comparisons">Videos</a><a href="#motivation">Motivation</a><a href="#method">Framework</a><a href="#experiments">Results</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="comparisons" class="comparison-section page-width" aria-labelledby="comparison-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / Reconstructions</p><h2 id="comparison-heading">Video comparisons</h2></div>
+        <p>Choose a reference. Drag the divider to compare it with SGVC.</p>
+      </div>
+      <div id="sequence-tabs" class="sequence-tabs" role="group" aria-label="Choose a dataset"></div>
+      <div class="comparison-layout">
+        <aside class="reference-selector" aria-label="Choose the left comparison">
+          <p class="selector-label">Compare with</p>
+          <div id="method-buttons" class="method-buttons" role="group" aria-label="Reference method"></div>
+          <p class="sidebar-note">Left: selected reference<br>Right: SGVC</p>
+        </aside>
+        <div class="player-shell">
+          <div id="video-stage" class="video-stage" style="--split:50%" aria-label="Synchronized video comparison" aria-busy="true">
+            <video id="sgvc-video" class="comparison-video" muted playsinline preload="none" disablepictureinpicture aria-label="SGVC reconstruction"></video>
+            <video id="reference-video" class="comparison-video reference-video" muted playsinline preload="none" disablepictureinpicture aria-label="Selected reference"></video>
+            <canvas id="sgvc-frame" class="comparison-frame" aria-hidden="true"></canvas>
+            <canvas id="reference-frame" class="comparison-frame reference-frame" aria-hidden="true"></canvas>
+            <img id="sgvc-poster" class="comparison-poster" alt="SGVC first P-frame preview" decoding="async" fetchpriority="high">
+            <img id="reference-poster" class="comparison-poster reference-poster" alt="Reference first P-frame preview" decoding="async" fetchpriority="high">
+            <div class="video-label video-label-left"><span id="reference-label">Reference</span><span id="reference-rate" class="rate-label"></span></div>
+            <div class="video-label video-label-right"><span>SGVC</span><span id="sgvc-rate" class="rate-label"></span></div>
+            <div class="split-divider" aria-hidden="true"><span class="split-handle"><svg viewBox="0 0 32 24"><path d="m10 6-6 6 6 6M22 6l6 6-6 6"/></svg></span></div>
+            <input id="split-slider" class="split-slider" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison divider position" aria-valuetext="50 percent reference, 50 percent SGVC">
+            <div id="loading-status" class="loading-status" role="status"><span class="loading-badge"><span class="spinner" aria-hidden="true"></span><span id="loading-text">Loading videos…</span></span></div>
+          </div>
+          <div class="player-controls">
+            <button id="play-button" class="icon-button" type="button" aria-label="Play both videos" title="Play both videos" disabled>
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+              <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <span id="time-label" class="time-label">0:00 / 0:00</span>
+            <input id="timeline" class="timeline" type="range" min="0" max="1000" step="1" value="0" aria-label="Video playback position" disabled>
+            <span id="frame-label" class="frame-label"></span>
+            <button id="fullscreen-button" class="icon-button fullscreen-button" type="button" aria-label="Expand video comparison" title="Expand video comparison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+          </div>
+          <p id="video-error" class="error-message" role="alert" hidden></p>
+        </div>
+      </div>
+      <noscript><p class="error-message">Enable JavaScript to use the synchronized video comparisons.</p></noscript>
+    </section>
+
+    <section id="motivation" class="paper-section page-width" aria-labelledby="motivation-heading">
+      <div class="section-heading"><div><p class="eyebrow">02 / The idea</p><h2 id="motivation-heading">Motivation</h2></div></div>
+      <div class="motivation-copy">
+        <h3>From latent Video DiT<br>to frame-by-frame <em>Pixel&nbsp;DiT.</em></h3>
+        <div>
+          <p>Image diffusion models have limited native temporal modeling. Clip-wise video DiTs capture richer spatiotemporal dependencies, but require multi-frame buffering and a VAE decoder to reconstruct pixels.</p>
+          <p><strong>SGVC adapts a pretrained latent video DiT into a causal pixel-space refiner.</strong> It aligns codec features with the DiT's input embeddings, and reconstructs each frame directly through a lightweight pixel reconstruction path.</p>
+        </div>
+      </div>
+      <div id="motivation-figures" class="figure-grid"></div>
+    </section>
+
+    <section id="method" class="paper-section page-width" aria-labelledby="method-heading">
+      <div class="section-heading"><div><p class="eyebrow">03 / The method</p><h2 id="method-heading">Framework</h2></div></div>
+      <div id="method-figures" class="figure-grid"></div>
+    </section>
+
+    <section id="experiments" class="paper-section page-width" aria-labelledby="experiments-heading">
+      <div class="section-heading"><div><p class="eyebrow">04 / The results</p><h2 id="experiments-heading">BD-rate comparison</h2></div></div>
+      <p class="section-intro">BD-rate (%) relative to S²VC. Negative values indicate rate savings; <strong>bold</strong> marks the best result in each column.</p>
+      <div class="table-wrap" role="region" aria-label="BD-rate results; scroll horizontally for all datasets" tabindex="0">
+        <table class="rd-table">
+          <caption>BD-rate (%) comparison with generative video codecs</caption>
+          <thead>
+            <tr><th rowspan="2" scope="col">Method</th><th colspan="3" scope="colgroup" class="group-start">HEVC-B</th><th colspan="3" scope="colgroup" class="group-start">UVG</th><th colspan="3" scope="colgroup" class="group-start">MCL-JCV</th></tr>
+            <tr><th scope="col" class="group-start">LPIPS</th><th scope="col">DISTS</th><th scope="col">FID</th><th scope="col" class="group-start">LPIPS</th><th scope="col">DISTS</th><th scope="col">FID</th><th scope="col" class="group-start">LPIPS</th><th scope="col">DISTS</th><th scope="col">FID</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">S²VC (Anchor)</th><td class="group-start">+0.00</td><td>+0.00</td><td>+0.00</td><td class="group-start">+0.00</td><td>+0.00</td><td>+0.00</td><td class="group-start">+0.00</td><td>+0.00</td><td>+0.00</td></tr>
+            <tr><th scope="row">GLC-Video</th><td class="group-start">+16.76</td><td>−15.23</td><td>−39.05</td><td class="group-start">+45.26</td><td>−42.52</td><td>−40.29</td><td class="group-start">+14.85</td><td>−23.08</td><td>−38.28</td></tr>
+            <tr><th scope="row">YODA</th><td class="group-start">+22.05</td><td><strong>−83.87</strong></td><td>−83.70</td><td class="group-start">+43.86</td><td>−84.18</td><td>−84.48</td><td class="group-start">+16.12</td><td><strong>−75.89</strong></td><td>−80.57</td></tr>
+            <tr><th scope="row">GVC-1D</th><td class="group-start"><strong>−43.40</strong></td><td>−61.27</td><td>−83.09</td><td class="group-start">−28.68</td><td>−58.21</td><td>−73.09</td><td class="group-start"><strong>−48.54</strong></td><td>−61.82</td><td>−76.41</td></tr>
+            <tr><th scope="row">GVC-RT</th><td class="group-start">−34.28</td><td>−48.97</td><td>−53.87</td><td class="group-start">−43.76</td><td>−54.46</td><td>−61.33</td><td class="group-start">−33.74</td><td>−29.84</td><td>−24.22</td></tr>
+            <tr class="ours"><th scope="row">SGVC</th><td class="group-start">−28.46</td><td>−66.48</td><td><strong>−88.23</strong></td><td class="group-start"><strong>−50.96</strong></td><td><strong>−85.41</strong></td><td><strong>−91.62</strong></td><td class="group-start">−28.40</td><td>−64.02</td><td><strong>−87.61</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">Scroll horizontally to view all datasets <span aria-hidden="true">↔</span></p>
+      <p class="table-note">Evaluation: first 96 frames per sequence · Intra period 32</p>
+    </section>
+
+    <section id="visual-comparison" class="paper-section page-width" aria-labelledby="visual-heading">
+      <div class="section-heading"><div><p class="eyebrow">05 / Visual results</p><h2 id="visual-heading">Qualitative comparison</h2></div><a class="figure-detail-link" href="assets/figures/qualitative-comparison.pdf" target="_blank" rel="noopener">View full resolution <span aria-hidden="true">↗</span></a></div>
+      <div id="qualitative-figures" class="figure-grid"></div>
+    </section>
+  </main>
+
+  <footer class="page-width"><span>SGVC · Streaming Generative Video Compression</span><a href="#">Back to top <span aria-hidden="true">↑</span></a></footer>
+</body>
+</html>
