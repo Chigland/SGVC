@@ -42,7 +42,7 @@ The script configures GitHub Pages to publish the `gh-pages` branch and `/ (root
 
 ## Add released resources
 
-The GitHub, ModelScope, and arXiv controls are intentionally disabled and marked **Soon**. When the corresponding resource is available, replace its disabled `<button class="resource-button">` in `index.html` with an `<a class="resource-button" href="ACTUAL_URL">`, remove the `disabled` attribute and `Soon` span, and update its accessible label. Use the actual released URL; do not add a placeholder link.
+The arXiv control links to the released paper at https://arxiv.org/abs/2611.23352 and opens in a new tab. GitHub and ModelScope remain disabled and marked **Soon**. When either resource is available, replace its disabled `<button class="resource-button">` in `index.html` with an `<a class="resource-button" href="ACTUAL_URL">`, remove the `disabled` attribute and `Soon` span, and update its accessible label. Use the actual released URL; do not add a placeholder link.
 
 ## Video comparison
 
